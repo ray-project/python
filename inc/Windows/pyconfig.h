@@ -322,7 +322,7 @@ Py_NO_ENABLE_SHARED to find out.  Also support MS_NO_COREDLL for b/w compat */
 			/* So MSVC users need not specify the .lib file in
 			their Makefile (other compilers are generally
 			taken care of by distutils.) */
-#			ifdef _DEBUG
+#			if defined(_DEBUG) && !(defined(Py_NO_DEBUG) && Py_NO_DEBUG != 0)
 #				pragma comment(lib,"python27_d.lib")
 #			else
 #				pragma comment(lib,"python27.lib")
@@ -364,7 +364,7 @@ Py_NO_ENABLE_SHARED to find out.  Also support MS_NO_COREDLL for b/w compat */
 #	endif
 #endif
 
-#ifdef _DEBUG
+#if defined(_DEBUG) && !(defined(Py_NO_DEBUG) && Py_NO_DEBUG != 0)
 #	define Py_DEBUG
 #endif
 
